@@ -3,9 +3,10 @@ import React from "react";
 import { Form, Button } from "react-bootstrap";
 
 export default function CallToAction() {
+  const fakeMsg = "This is a dummy form! Gotcha!"
   return (
     <div className="white-slot">
-      <Form className="description-box-white">
+      <Form onSubmit={() => alert(fakeMsg)} className="description-box-white">
         <Form.Group controlId="formBasicEmail">
           <Form.Label className="cursive-font">
             <h1>Stay up-to-date with us!</h1>

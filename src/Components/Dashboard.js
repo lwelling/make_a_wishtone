@@ -1,13 +1,19 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 
 import CurrentUser from "./CurrentUser";
+import { UserContext } from "./providers/UserProvider";
 
-const Dashboard = (user) => {
+const Dashboard = () => {
   return (
-    <>
-      <h1>This is your dashboard</h1>
-      <CurrentUser user={user.user} />
-    </>
+    <UserContext.Consumer>
+      {(user) => 
+        user ? (
+          <CurrentUser user={user} /> 
+        ) : (
+          <Redirect to="/signin" />
+        )}
+    </UserContext.Consumer>
   );
 };
 

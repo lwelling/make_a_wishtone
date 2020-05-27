@@ -113,3 +113,10 @@ body {
   width: 21%;
   height: auto;
 }
+
+.signInForm {
+  width: 76%;
+  margin: auto;
+  padding: 2% 2%;
+  display: flexbox;
+}

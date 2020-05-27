@@ -21,7 +21,7 @@ export const auth = firebase.auth();
 export const provider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
-// this is for dev purposes only; don't ship.
+// this is for dev purposes only; don't ship, lucas!!!
 window.firebase = firebase;
 
 export default firebase;

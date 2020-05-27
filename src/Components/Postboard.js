@@ -1,18 +1,23 @@
 import React from "react";
+
 import Post from "./Post";
 import AddPost from "./AddPost";
+import { PostsContext } from "./providers/PostsProvider";
 
-const Posts = ({ postList }) => {
-  const posts = postList.posts;
+const Posts = () => {
   return (
     <>
       <AddPost />
       <section className="Posts">
-        {posts ? (
-          posts.map((post) => <Post {...post} key={post.id} />)
-        ) : (
-          <p>Nothing to see here ...</p>
-        )}
+        <PostsContext.Consumer>
+          {(posts) =>
+            posts ? (
+              posts.map((post) => <Post {...post} key={post.id} />)
+            ) : (
+              <p>Nothing to see here ...</p>
+            )
+          }
+        </PostsContext.Consumer>
       </section>
     </>
   );

@@ -1,13 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
+
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
+import PostsProvider from "./Components/providers/PostsProvider";
+import UserProvider from "./Components/providers/UserProvider";
 
 ReactDOM.render(
   <React.StrictMode>
-      <App />
+    <UserProvider>
+      <PostsProvider>
+        <App />
+      </PostsProvider>
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

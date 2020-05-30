@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import { Button, Card } from "react-bootstrap";
 
 import { firestore } from "../firebase";
 
@@ -12,13 +13,12 @@ const Post = ({ title, content, user, createdAt, stars, id }) => {
   const starDown = () => postRef.update({ stars: stars - 1 });
 
   return (
-    <article className="Post">
-      <div className="Post--content">
-        <h3>{title}</h3>
-        <div>{content}</div>
-      </div>
-      <div className="Post--meta">
-        <div>
+    <Card className="text-center">
+      <Card.Header>{moment(createdAt.toDateString).calendar()}</Card.Header>
+      <Card.Body>
+        <Card.Title>{title}</Card.Title>
+        <Card.Text>
+          {content}
           <p>
             {stars >= 0 ? (
               <span role="img" aria-label="star">
@@ -31,22 +31,21 @@ const Post = ({ title, content, user, createdAt, stars, id }) => {
             )}
             {stars}
           </p>
-          <p>Posted by {user.displayName}</p>
-          <p>{moment(createdAt.toDateString).calendar()}</p>
-        </div>
-        <div>
-          <button className="star" onClick={starUp}>
-            Upvote{" "}
-          </button>
-          <button className="star" onClick={starDown}>
-            Downvote{" "}
-          </button>
-          <button className="delete" onClick={remove}>
-            Delete
-          </button>
-        </div>
-      </div>
-    </article>
+        </Card.Text>
+        <Button variant="danger" className="star" onClick={starDown}>
+          Downvote{" "}
+        </Button>
+        <Button className="star" onClick={starUp}>
+          Upvote{" "}
+        </Button>
+        <Button variant="outline-danger" className="delete" onClick={remove}>
+          Delete
+        </Button>
+      </Card.Body>
+      <Card.Footer className="text-muted">
+        Posted by {user.displayName}
+      </Card.Footer>
+    </Card>
   );
 };
 

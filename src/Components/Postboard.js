@@ -4,10 +4,10 @@ import Post from "./Post";
 import AddPost from "./AddPost";
 import { PostsContext } from "./providers/PostsProvider";
 
-const Posts = () => {
+const Postboard = ({ user, isLoading }) => {
   return (
     <>
-      <AddPost />
+      <AddPost isLoading={isLoading} user={user} />
       <section className="Posts">
         <PostsContext.Consumer>
           {(posts) =>
@@ -22,4 +22,4 @@ const Posts = () => {
     </>
   );
 };
-export default Posts;
+export default Postboard;

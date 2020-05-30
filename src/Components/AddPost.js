@@ -2,8 +2,9 @@ import React, { useState } from "react";
 
 import { firestore } from "../firebase";
 
-const AddPost = () => {
+const AddPost = ({ user }) => {
   const [postContent, setPostContent] = useState({ title: "", content: "" });
+  const { uid, displayName, email, photoURL } = user;
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -26,14 +27,14 @@ const AddPost = () => {
       content,
       stars: 0,
       user: {
-        uid: "1111",
-        displayName: "Lucas Welling",
-        email: "lucas@lucass.com",
-        photoURL: "http://placekitten.com/g/200/200",
+        uid,
+        displayName,
+        email,
+        photoURL,
       },
       favorites: 0,
       comments: 0,
-      createdAt: new Date()
+      createdAt: new Date(),
     };
 
     firestore.collection("posts").doc(post.id).set(post);

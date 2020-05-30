@@ -31,7 +31,7 @@ const SignUp = () => {
   return (
     <UserContext.Consumer>
       {(user) =>
-        user ? (
+        user.userObj && user.isLoading === false ? (
           <Redirect to="/dashboard" />
         ) : (
           <Form className="signInForm" onSubmit={handleSubmit}>

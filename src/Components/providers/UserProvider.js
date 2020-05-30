@@ -4,7 +4,10 @@ import firebase from "../../firebase";
 export const UserContext = createContext();
 
 const UserProvider = (props) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    userObj: null,
+    isLoading: true,
+  });
   const { children } = props;
 
   useEffect(() => {
@@ -12,7 +15,10 @@ const UserProvider = (props) => {
       let unsubscribeFromAuthListener = firebase
         .auth()
         .onAuthStateChanged((userObj) => {
-          setUser(userObj);
+          setUser({
+            userObj: userObj,
+            isLoading: !user.isLoading,
+          });
         });
       return () => {
         unsubscribeFromAuthListener();
@@ -21,9 +27,7 @@ const UserProvider = (props) => {
     authListener();
   }, []);
 
-  return (
-    <UserContext.Provider value={user}>{children}</UserContext.Provider>
-  );
+  return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
 };
 
 export default UserProvider;

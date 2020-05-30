@@ -7,13 +7,13 @@ import Postboard from "./Components/Postboard";
 import NavigationBar from "./Components/NavigationBar";
 import SignIn from "./Components/SignIn";
 import SignUp from "./Components/SignUp";
+import Authentication from "./Components/Authentication";
 
 function App() {
   return (
     <Router>
       <NavigationBar />
       <Switch>
-        {/* Each component is checking Auth from context. TODO: eliminate flicker. */}
         <Route exact path="/">
           <Home />
         </Route>
@@ -23,12 +23,8 @@ function App() {
         <Route exact path="/signup">
           <SignUp />
         </Route>
-        <Route exact path="/wishingwell">
-          <Postboard />
-        </Route>
-        <Route exact path="/dashboard">
-          <Dashboard />
-        </Route>
+        <Authentication component={Postboard} exact path="/postboard" />
+        <Authentication component={Dashboard} exact path="/dashboard" />
       </Switch>
     </Router>
   );

@@ -1,23 +1,21 @@
-  
-import React from 'react';
-import firebase from '../firebase';
+import React from "react";
 
-const CurrentUser = ({user}) => {
-  const { displayName, photoURL, email, children } = user
+const CurrentUser = ({ user }) => {
+  const { displayName, photoURL, email } = user;
   return (
-    <section className="CurrentUser">
-      <div className="CurrentUser--profile">
-        {photoURL && <img src={photoURL} alt={displayName} />}
-        <div className="CurrentUser--information">
-          <h2>{displayName}</h2>
-          <p className="email">{email}</p>
-        </div>
-      </div>
+    <div>
+      {photoURL && (
+        <img
+          style={{ borderRadius: "50%", height: "7rem", width: "auto" }}
+          src={photoURL}
+          alt={displayName}
+        />
+      )}
       <div>
-        <div>{children}</div>
-        <button onClick={() => firebase.auth().signOut()}>Sign Out</button>
+        <h2>{displayName}</h2>
+        <p>{email}</p>
       </div>
-    </section>
+    </div>
   );
 };
 

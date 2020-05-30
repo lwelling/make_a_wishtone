@@ -3,7 +3,7 @@ import moment from "moment";
 
 import { firestore } from "../firebase";
 
-const Post = ({ title, content, user, createdAt, stars, id }) => {
+const Post = ({ photoURL, title, content, user, createdAt, stars, id }) => {
   const postRef = firestore.doc(`posts/${id}`);
   const remove = () => postRef.delete();
 

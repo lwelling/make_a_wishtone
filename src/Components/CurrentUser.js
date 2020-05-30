@@ -11,7 +11,7 @@ const CurrentUser = ({ user }) => {
             variant="top"
             alt={displayName}
             src={photoURL}
-            style={{ borderRadius: "50%", height: "25vh", width: "25vw" }}
+            style={{ borderRadius: "50%", height: "25vh", width: "auto"}}
           />
         </Card>
         <Card>

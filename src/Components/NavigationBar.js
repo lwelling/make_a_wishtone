@@ -12,10 +12,10 @@ export default function NavigationBar() {
 
   return (
     <UserContext.Consumer>
-      {(user) =>
+      {(user) => 
         user.userObj && user.isLoading === false ? (
           <>
-            <Navbar variant="light" expand="lg">
+            <Navbar style={{ minHeight: "7vh", minWidth: "7vw" }} variant="light" expand="lg">
               <Navbar.Brand href="/">
                 <img style={{ height: "50px" }} src={logo} alt="logo" />
               </Navbar.Brand>
@@ -25,6 +25,7 @@ export default function NavigationBar() {
                   <Navbar.Text>Hello, {user.userObj.displayName}</Navbar.Text>
                   <Nav.Link href="/dashboard">Dashboard</Nav.Link>
                   <Nav.Link href="/postboard">Postboard</Nav.Link>
+                  <Nav.Link href="/upload">Upload a Wish!</Nav.Link>
                   <Nav.Link onClick={signOut}>Sign out</Nav.Link>
                 </Nav>
               </Navbar.Collapse>

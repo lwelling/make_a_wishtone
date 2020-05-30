@@ -11,20 +11,18 @@ const UserProvider = (props) => {
   const { children } = props;
 
   useEffect(() => {
-    async function authListener() {
-      let unsubscribeFromAuthListener = firebase
-        .auth()
-        .onAuthStateChanged((userObj) => {
-          setUser({
-            userObj: userObj,
-            isLoading: !user.isLoading,
-          });
+    let unsubscribeFromAuthListener = async () => {
+      firebase.auth().onAuthStateChanged((userObj) => {
+        setUser({
+          userObj: userObj,
+          isLoading: !user.isLoading,
         });
-      return () => {
-        unsubscribeFromAuthListener();
-      };
-    }
-    authListener();
+      });
+    };
+    unsubscribeFromAuthListener();
+    return () => {
+      unsubscribeFromAuthListener();
+    };
   }, []);
 
   return <UserContext.Provider value={user}>{children}</UserContext.Provider>;

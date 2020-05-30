@@ -8,11 +8,12 @@ import NavigationBar from "./Components/NavigationBar";
 import SignIn from "./Components/SignIn";
 import SignUp from "./Components/SignUp";
 import Authentication from "./Components/Authentication";
+import Upload from "./Components/Upload";
 
 function App() {
   return (
     <Router>
-      <NavigationBar />
+      <Authentication component={NavigationBar} />
       <Switch>
         <Route exact path="/">
           <Home />
@@ -25,6 +26,7 @@ function App() {
         </Route>
         <Authentication component={Postboard} exact path="/postboard" />
         <Authentication component={Dashboard} exact path="/dashboard" />
+        <Authentication component={Upload} exact path="/upload" />
       </Switch>
     </Router>
   );

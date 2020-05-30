@@ -3,11 +3,13 @@ import moment from "moment";
 
 import { firestore } from "../firebase";
 
-const Post = ({ photoURL, title, content, user, createdAt, stars, id }) => {
+const Post = ({ title, content, user, createdAt, stars, id }) => {
+  console.log(moment(createdAt.toDateString));
   const postRef = firestore.doc(`posts/${id}`);
   const remove = () => postRef.delete();
 
-  const star = () => postRef.update({ stars: stars + 1 });
+  const starUp = () => postRef.update({ stars: stars + 1 });
+  const starDown = () => postRef.update({ stars: stars - 1 });
 
   return (
     <article className="Post">
@@ -18,17 +20,26 @@ const Post = ({ photoURL, title, content, user, createdAt, stars, id }) => {
       <div className="Post--meta">
         <div>
           <p>
-            <span role="img" aria-label="star">
-              ⭐️
-            </span>
+            {stars >= 0 ? (
+              <span role="img" aria-label="star">
+                🔥
+              </span>
+            ) : (
+              <span role="img" aria-label="splat">
+                💩
+              </span>
+            )}
             {stars}
           </p>
           <p>Posted by {user.displayName}</p>
           <p>{moment(createdAt.toDateString).calendar()}</p>
         </div>
         <div>
-          <button className="star" onClick={star}>
-            Star{" "}
+          <button className="star" onClick={starUp}>
+            Upvote{" "}
+          </button>
+          <button className="star" onClick={starDown}>
+            Downvote{" "}
           </button>
           <button className="delete" onClick={remove}>
             Delete

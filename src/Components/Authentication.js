@@ -8,7 +8,7 @@ const Authentication = ({ component: Component, location }) => {
   return (
     <UserContext.Consumer>
       {(user) =>
-        user.isLoading ? <Spinner animation="border" /> : (
+        user.isLoading ? <Spinner style={{ minHeight: "7vh", minWidth: "7vw" }} size="lg" variant="primary" animation="border" /> : (
           <>
             {user.userObj ? (
               <Component isLoading={user.isLoading} user={user.userObj} />

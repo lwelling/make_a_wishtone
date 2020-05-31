@@ -5,7 +5,6 @@ import { Button, Card } from "react-bootstrap";
 import { firestore } from "../firebase";
 
 const Post = ({ title, content, user, createdAt, stars, id }) => {
-  console.log(moment(createdAt.toDateString));
   const postRef = firestore.doc(`posts/${id}`);
   const remove = () => postRef.delete();
 
@@ -19,18 +18,16 @@ const Post = ({ title, content, user, createdAt, stars, id }) => {
         <Card.Title>{title}</Card.Title>
         <Card.Text>
           {content}
-          <p>
-            {stars >= 0 ? (
-              <span role="img" aria-label="star">
-                🔥
-              </span>
-            ) : (
-              <span role="img" aria-label="splat">
-                💩
-              </span>
-            )}
-            {stars}
-          </p>
+          {stars >= 0 ? (
+            <span role="img" aria-label="star">
+              🔥
+            </span>
+          ) : (
+            <span role="img" aria-label="splat">
+              💩
+            </span>
+          )}
+          {stars}
         </Card.Text>
         <Button variant="danger" className="star" onClick={starDown}>
           Downvote{" "}

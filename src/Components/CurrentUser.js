@@ -1,5 +1,7 @@
 import React from "react";
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Card } from "react-bootstrap";
+
+import anonIcon from "./assets/anon-icon-01.png";
 
 const CurrentUser = ({ user }) => {
   const { displayName, photoURL, email } = user;
@@ -8,10 +10,9 @@ const CurrentUser = ({ user }) => {
       <Card>
         <Card>
           <Card.Img
-            variant="top"
             alt={displayName}
-            src={photoURL}
-            style={{ borderRadius: "50%", height: "25vh", width: "auto"}}
+            src={photoURL ? photoURL : anonIcon}
+            style={{ borderRadius: "50%", maxHeight: "20vh", maxWidth: "20vw" }}
           />
         </Card>
         <Card>

@@ -13,7 +13,9 @@ import Upload from "./Components/Upload";
 function App() {
   return (
     <Router>
-      <Authentication component={NavigationBar} />
+      <Route>
+        <NavigationBar />
+      </Route>
       <Switch>
         <Route exact path="/">
           <Home />

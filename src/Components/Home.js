@@ -4,7 +4,7 @@ import Hero from "./Hero";
 import Definition from "./Definition";
 import CallToAction from "./CallToAction";
 
-const Home = (props) => {
+const Home = () => {
   return (
     <>
       <Hero />

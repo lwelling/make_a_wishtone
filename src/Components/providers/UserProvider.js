@@ -11,17 +11,17 @@ const UserProvider = (props) => {
   const { children } = props;
 
   useEffect(() => {
-    let unsubscribeFromAuthListener = async () => {
+    const abortController = new AbortController()
+
       firebase.auth().onAuthStateChanged((userObj) => {
         setUser({
           userObj: userObj,
           isLoading: !user.isLoading,
         });
       });
-    };
-    unsubscribeFromAuthListener();
-    return () => {
-      unsubscribeFromAuthListener();
+
+    return function cancel() {
+      abortController.abort();
     };
   }, []);
 

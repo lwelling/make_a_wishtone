@@ -1,9 +1,10 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
-import { signInWithGoogle } from "../firebase";
+import { signInWithGoogle, createUserProfileDocument } from "../firebase";
 import { Redirect } from "react-router-dom";
 import { UserContext } from "./providers/UserProvider";
+import firebase from "../firebase";
 
 const SignUp = () => {
   const [credentials, setCredentials] = useState({
@@ -22,8 +23,21 @@ const SignUp = () => {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    try {
+      const { user } = await firebase
+        .auth()
+        .createUserWithEmailAndPassword(
+          credentials.email,
+          credentials.password
+        );
+      // createUserProfileDocument(user, { displayName });
+      // TODO: createUserProfileDocument fix...feed display name, etc...
+    } catch (error) {
+      console.log(error);
+    }
 
     setCredentials({ displayName: "", email: "", password: "" });
   };
@@ -36,7 +50,7 @@ const SignUp = () => {
         ) : (
           <Form className="signInForm" onSubmit={handleSubmit}>
             <Form.Group>
-              <Form.Label>Display Name</Form.Label>
+              {/* <Form.Label>Display Name</Form.Label>
               <Form.Control
                 onChange={handleChange}
                 value={displayName}
@@ -44,7 +58,7 @@ const SignUp = () => {
                 type="displayName"
                 placeholder="Display Name"
                 autoComplete="true"
-              />
+              /> */}
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 onChange={handleChange}

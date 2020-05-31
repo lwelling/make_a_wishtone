@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 
-import { signInWithGoogle } from "../firebase";
+import {
+  signInWithGoogle,
+  signInWithTwitter,
+  signInWithFacebook,
+} from "../firebase";
 import { UserContext } from "./providers/UserProvider";
 
 const SignIn = () => {
@@ -51,11 +55,18 @@ const SignIn = () => {
               />
               <Button
                 style={{ marginTop: "1%", width: "100%" }}
-                variant="primary"
+                variant="outline-primary"
                 type="submit"
                 value="Sign In"
               >
                 Sign in
+              </Button>
+              <Button
+                style={{ marginTop: "5%", width: "100%" }}
+                variant="primary"
+                onClick={signInWithFacebook}
+              >
+                Sign in with Facebook
               </Button>
               <Button
                 style={{ marginTop: "1%", width: "100%" }}
@@ -63,6 +74,13 @@ const SignIn = () => {
                 onClick={signInWithGoogle}
               >
                 Sign in with Google
+              </Button>
+              <Button
+                style={{ marginTop: "1%", width: "100%" }}
+                variant="secondary"
+                onClick={signInWithTwitter}
+              >
+                Sign in with Twitter
               </Button>
               <Button
                 style={{ marginTop: "5%", width: "100%" }}
